@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DOCKER_VERSION 1.5.0
