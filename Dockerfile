@@ -13,7 +13,8 @@ RUN set -x \
       --bash-completion=false \
       --path-update=true \
       --additional-components=preview \
-    && google-cloud-sdk/bin/gcloud components update \
+    && google-cloud-sdk/bin/gcloud --quiet components update beta \
+    && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
     && mkdir /.ssh \
     && ( curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz | \
       tar -xzf - -C /usr/bin --strip-components=3 ) \
