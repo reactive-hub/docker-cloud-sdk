@@ -1,6 +1,7 @@
 FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV CLOUDSDK_COMPONENT_MANAGER_FIXED_SDK_VERSION 0.9.57
 
 RUN set -x \
     && apt-get update -qq \
@@ -11,9 +12,9 @@ RUN set -x \
       --rc-path=/.bashrc \
       --bash-completion=false \
       --path-update=true \
-      --additional-components=preview \
-    && google-cloud-sdk/bin/gcloud --quiet components update beta \
+    && google-cloud-sdk/bin/gcloud --quiet config set component_manager/fixed_sdk_version ${CLOUDSDK_COMPONENT_MANAGER_FIXED_SDK_VERSION} \
     && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
+    && google-cloud-sdk/bin/gcloud --quiet components update beta preview \
     && mkdir /.ssh \
     && apt-get remove -qq --auto-remove curl \
     && apt-get clean -qq \
