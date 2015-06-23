@@ -1,7 +1,6 @@
 FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DOCKER_VERSION 1.5.0
 
 RUN set -x \
     && apt-get update -qq \
@@ -16,9 +15,6 @@ RUN set -x \
     && google-cloud-sdk/bin/gcloud --quiet components update beta \
     && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
     && mkdir /.ssh \
-    && ( curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz | \
-      tar -xzf - -C /usr/bin --strip-components=3 ) \
-    && chmod +x /usr/bin/docker \
     && apt-get remove -qq --auto-remove curl \
     && apt-get clean -qq \
     && rm -rf /var/lib/apt/lists/*
