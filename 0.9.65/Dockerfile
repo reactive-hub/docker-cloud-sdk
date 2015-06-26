@@ -3,6 +3,8 @@ FROM debian:jessie
 ENV DEBIAN_FRONTEND noninteractive
 ENV CLOUDSDK_COMPONENT_MANAGER_FIXED_SDK_VERSION 0.9.65
 
+ENV HOME /
+
 RUN set -x \
     && apt-get update -qq \
     && apt-get install -qq --no-install-recommends curl ca-certificates python \
@@ -21,7 +23,6 @@ RUN set -x \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH /google-cloud-sdk/bin:$PATH
-ENV HOME /
 
 VOLUME ["/.config"]
 
