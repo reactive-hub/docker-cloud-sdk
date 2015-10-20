@@ -14,7 +14,7 @@ RUN set -x \
       --bash-completion=false \
       --path-update=true \
     && google-cloud-sdk/bin/gcloud --quiet config set component_manager/disable_update_check true \
-    && google-cloud-sdk/bin/gcloud --quiet components update beta preview \
+    && google-cloud-sdk/bin/gcloud --quiet components update beta \
     && mkdir /.ssh \
     && apt-get remove -qq --auto-remove curl \
     && apt-get clean -qq \
